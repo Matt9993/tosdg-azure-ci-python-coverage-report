@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "azure-code-coverage"
+version = "0.1.0"
+description = "Example project to showcase Pycobertura in Azure CI"
+authors = ["The Open Source Guy"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pydantic = "^1.10.5"
+
+[tool.poetry.group.dev.dependencies]
+poethepoet = "^0.18.1"
+pytest = "^7.1.2"
+pytest-cov = "^4.0.0"
+pytest-azurepipelines = "^1.0.4"
+pycobertura = "^3.0.0"
+
+[build-system]
+requires = ["poetry-core>=1.2.1"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poe.tasks]
+# Tests
+unit-tests = "pytest tests/"
+unit-test-with-env-file = "pytest tests/ -s --envfile tests/test.env"
+# Code coverage
+test-coverage = [
+    { cmd = "coverage run -m pytest tests/" },
+    { cmd = "coverage report -m --fail-under=80" } ]
+test-coverage-report = [
+    { ref = "test-coverage"},  { cmd = "coverage xml --fail-under=80"},
+    { cmd = "coverage html --fail-under=70"}]
+test-coverage-report-azure = [
+    { cmd = "python -m pytest -v -o junit_family=xunit2 --junitxml=junit/test-results.xml --cov --cov-report=xml:pytest-cobertura.xml --cov-report=html --no-coverage-upload"},
+    { cmd = "pycobertura show --format html --output html-cob/index.html coverage.xml"}
+]
