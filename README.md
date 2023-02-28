@@ -17,8 +17,8 @@ as an artifact when a PR is created against the `develop` branch.
   The pipeline needs to have a whole folder not just the index.html
   to be copied into the artifacts.
 - src/ folder:
-  Holds the example files that describe a fictional company
-  with salaries, projects and employees.
+  Holds the example files that describe a fictional engineer
+  with projects and income.
 - tests/ folder:
   Holds the test files for the src folder files.
 - pyproject.toml:
