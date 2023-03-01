@@ -1,12 +1,12 @@
 """Represent the Project class to test with"""
-from enum import Enum
+from enum import StrEnum, auto
 from dataclasses import dataclass
 
 
-class ProjectTypes(Enum):
-    SMALL = "small"
-    MEDIUM = "medium"
-    BIG = "big"
+class ProjectTypes(StrEnum):
+    SMALL = auto()
+    MEDIUM = auto()
+    BIG = auto()
 
 
 @dataclass
