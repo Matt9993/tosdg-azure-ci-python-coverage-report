@@ -1,4 +1,4 @@
-# A `The Open Source Guy` Project
+# A `The Open Source Data Guy` Project
 ## To showcase python coverage report generation in Azure CI
 
 ![](report-visualize.gif)
